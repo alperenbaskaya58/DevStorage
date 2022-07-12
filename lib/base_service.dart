@@ -68,10 +68,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
       return response;
     } catch (e) {
-       print('\x1B[31mError on post: ${e.toString()}\x1B[0m');    
+       print('\x1B[31m Error on post: ${e.toString()}\x1B[0m');    
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -108,7 +108,7 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      print('\x1B[31m${response.data.toString()}\x1B[0m');        
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');        
       //print(response.data.toString());
       //print(response.statusCode);
       return response;
@@ -151,10 +151,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
       return response;
     } catch (e) {
-       print('\x1B[31mError on put: ${e.toString()}\x1B[0m');    
+       print('\x1B[31m Error on put: ${e.toString()}\x1B[0m');    
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -193,10 +193,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
       return response;
     } catch (e) {
-       print('\x1B[31mError on delete: ${e.toString()}\x1B[0m');    
+       print('\x1B[31m Error on delete: ${e.toString()}\x1B[0m');    
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -241,10 +241,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
       return response;
     } catch (e) {
-       print('\x1B[31mError on upload file: ${e.toString()}\x1B[0m');    
+       print('\x1B[31m Error on upload file: ${e.toString()} \x1B[0m');    
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
