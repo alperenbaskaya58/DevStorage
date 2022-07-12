@@ -1,5 +1,7 @@
 library dev_storage_package;
 import 'dart:developer';
+import 'dart:ui';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class DevStorage {
@@ -67,6 +69,31 @@ class DevStorage {
       log('\x1B[36m${e.toString()}\x1B[0m');
       return false;
     }
+  }
+
+  static const LOCALE_COUNTRY = "localeCOUNTRY";
+  static const LOCALE_LANGUAGE = "localeLANG";
+  
+  
+  Locale? getLocale(Locale defaultLocale) {
+    Locale? localeD;
+    String localeCOUNTRY = box.read(LOCALE_COUNTRY) ?? "";
+    String localeLANGUAGE = box.read(LOCALE_LANGUAGE) ?? "";
+
+    if (localeCOUNTRY != "" && localeLANGUAGE != "") {
+      localeD = Locale(localeLANGUAGE, localeCOUNTRY);
+    } else {
+      localeD = defaultLocale;
+    }
+    return localeD;
+  }
+
+  // set and update device locale
+  setLocale(Locale? locale) {
+    box.write(LOCALE_COUNTRY, locale!.countryCode);
+    box.write(LOCALE_LANGUAGE, locale.languageCode);
+    Get.updateLocale(locale);
+    return;
   }
 
 
