@@ -10,7 +10,9 @@ environment:
 dependencies:
   #flutter:
     #sdk: flutter
-  get_storage: ^2.0.3  
+  get_storage: ^2.0.3
+  get: ^4.6.5
+  internet_connection_checker: ^0.0.1+4    
 
 dev_dependencies:
   flutter_test:
