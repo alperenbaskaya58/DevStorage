@@ -7,6 +7,7 @@ class DevStorage {
 
   initilizeDevStorage()async{
     await GetStorage.init();
+    log('\x1B[36mGetstorage initialized\x1B[0m');
     return;
   }
 
@@ -14,10 +15,12 @@ class DevStorage {
     dynamic value;
     try{
     value = box.read(key);
+    log('\x1B[36m Get: ${key}: $value \x1B[0m');
     }
     catch(e){
-      log("DevStorage getKeys value error");
-      log(e.toString());
+      log('\x1B[36mDevStorage getKeys value error\x1B[0m');
+      //log("DevStorage getKeys value error");
+      log('\x1B[36m${e.toString()}\x1B[0m');
     }
     return value;
   }
@@ -26,11 +29,13 @@ class DevStorage {
    
     try{
     box.write(key, value);
+    log('\x1B[36m Set: ${key} to $value \x1B[0m');
     return true;
     }
     catch(e){
-      log("DevStorage setKeysValue value error");
-      log(e.toString());
+      log('\x1B[36mDevStorage setkeys value error\x1B[0m');
+      //log("DevStorage getKeys value error");
+      log('\x1B[36m${e.toString()}\x1B[0m');
       return false;
     }
   }
@@ -39,11 +44,13 @@ class DevStorage {
   bool removeKeysValue(String key){
     try{
     box.remove(key);
+    log('\x1B[36m Remove: ${key}\x1B[0m');
     return true;
     }
     catch(e){
-      log("DevStorage removeKeysvalue value error");
-      log(e.toString());
+      log('\x1B[36mDevStorage removekeys  error\x1B[0m');
+      //log("DevStorage getKeys value error");
+      log('\x1B[36m${e.toString()}\x1B[0m');
       return false;
     }
   }
