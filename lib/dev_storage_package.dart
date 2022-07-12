@@ -55,5 +55,20 @@ class DevStorage {
     }
   }
 
+  bool deleteAllStorage(){
+    try{
+      box.erase();
+      log('\x1B[36m Erease all \x1B[0m');
+      return true;
+    }
+    catch(e){
+      log('\x1B[36mDevStorage delete all  error\x1B[0m');
+      
+      log('\x1B[36m${e.toString()}\x1B[0m');
+      return false;
+    }
+  }
+
+
   
 }

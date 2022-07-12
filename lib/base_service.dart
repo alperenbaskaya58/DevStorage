@@ -11,7 +11,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ApiClient extends GetxService {
   
-  late String token;
+  //late String token;
   late dio.Dio dioD;
   String tokenKey;
   String baseUrl;
@@ -23,11 +23,11 @@ class ApiClient extends GetxService {
   ApiClient({required this.devStorage, required this.baseUrl, required this.tokenKey}) {
     
 
-    token = devStorage.getKeysValue(tokenKey) ??  "";
-    _mainHeaders = {
+    //token = devStorage.getKeysValue(tokenKey) ??  "";
+    /*_mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
       'Authorization': 'Bearer $token',
-    };
+    };*/
 
     var options = dio.BaseOptions(
     baseUrl: baseUrl,
