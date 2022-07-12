@@ -31,7 +31,7 @@ class UrlLauncherX {
       case LinkType.whatsapp:
         var whatsappURl_android =
             "whatsapp://send?phone=" + link + "&text=Bishy";
-        var whatappURL_ios = "https://wa.me/$link?text=${Uri.parse("Bishy")}";
+        var whatappURL_ios = "https://wa.me/$link?text=""}";
         if (Platform.isIOS) {
           if (await canLaunch(whatappURL_ios)) {
             await launch(whatappURL_ios, forceSafariVC: false);
