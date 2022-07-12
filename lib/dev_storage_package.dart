@@ -88,7 +88,6 @@ class DevStorage {
     return localeD;
   }
 
-  // set and update device locale
   setLocale(Locale? locale) {
     box.write(LOCALE_COUNTRY, locale!.countryCode);
     box.write(LOCALE_LANGUAGE, locale.languageCode);
