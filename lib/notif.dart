@@ -114,7 +114,7 @@ class NotifController extends GetxController {
       importance: Importance.max);
   var iOS = IOSNotificationDetails();
   var platform = NotificationDetails(android: android, iOS: iOS);
-  await flp.show(DateTime.now().microsecond, message.data["str1"], message.data["str2"], platform );
+  await flp.show(DateTime.now().microsecond, message.data["title"], message.data["body"], platform );
 }
 
 
