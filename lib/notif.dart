@@ -38,10 +38,10 @@ class NotificationW {
 }
 
 class NotifController extends GetxController {
-  Function onBackgroundMessageX ;
-  Function getInitialMessageX ;
-  Function onMessageX ;
-  Function onMessageOpenedAppX ;
+  Function(RemoteMessage message) onBackgroundMessageX ;
+  Function(RemoteMessage message) getInitialMessageX ;
+  Function(RemoteMessage message) onMessageX ;
+  Function(RemoteMessage message) onMessageOpenedAppX ;
 
 
 
@@ -60,7 +60,7 @@ class NotifController extends GetxController {
   FirebaseMessaging.onBackgroundMessage((message) async {
     if (message != null) {
         await showNotification(message);
-        onBackgroundMessageX;
+        onBackgroundMessageX(message);
       }
   });
 
@@ -71,7 +71,7 @@ class NotifController extends GetxController {
 
       if (message != null) {
         await showNotification(message);
-        getInitialMessageX;
+        getInitialMessageX(message);
       }
     });
 
@@ -79,7 +79,7 @@ class NotifController extends GetxController {
       log("notif $message");
       if (message != null) {
         await showNotification(message);
-        onMessageX;
+        onMessageX(message);
         
               }
     });
@@ -88,7 +88,7 @@ class NotifController extends GetxController {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       if (message != null) {
         await showNotification(message);
-        onMessageOpenedAppX;
+        onMessageOpenedAppX(message);
         
     
       }
