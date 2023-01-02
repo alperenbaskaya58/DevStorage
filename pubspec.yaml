@@ -1,6 +1,6 @@
 name: dev_storage_package
 description: A new Flutter package project.
-version: 0.0.1
+version: 0.1.1
 homepage:
 
 environment:
@@ -17,7 +17,7 @@ dependencies:
   url_launcher: ^6.1.7
   firebase_messaging: ^14.2.1
   flutter_local_notifications: ^13.0.0
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
