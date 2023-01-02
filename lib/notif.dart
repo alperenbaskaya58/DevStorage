@@ -102,7 +102,7 @@ class NotifController extends GetxController {
    showNotification( RemoteMessage message) async {
         FlutterLocalNotificationsPlugin flp = FlutterLocalNotificationsPlugin();
     var androidw = AndroidInitializationSettings('@mipmap/ic_launcher');
-    var iOSw = IOSInitializationSettings();
+    var iOSw = DarwinInitializationSettings();
     var initSetttings = InitializationSettings(android: androidw, iOS: iOSw);
     flp.initialize(initSetttings);
       var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
@@ -116,7 +116,7 @@ class NotifController extends GetxController {
       channelDescription: 'CHANNEL DESCRIPTION',
       priority: Priority.high,
       importance: Importance.max);
-  var iOS = IOSNotificationDetails();
+  var iOS = DarwinNotificationDetails();
   var platform = NotificationDetails(android: android, iOS: iOS);
   await flp.show(DateTime.now().microsecond, message.notification!.title, message.notification!.body, platform );
 }
