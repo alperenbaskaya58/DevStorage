@@ -94,7 +94,11 @@ Future<bool?> dialogReturnTrueFalse(
                   Get.back();
                 },
                 backgroundColor: bgColor,
-                child: Text(noTxt),
+                child: Text(noTxt,
+                style: TextStyle(
+                  color: contentTxtColor
+                ),
+                ),
               ),
               FloatingActionButton(
                 onPressed: () {
@@ -102,7 +106,11 @@ Future<bool?> dialogReturnTrueFalse(
                   Get.back();
                 },
                 backgroundColor: bgColor,
-                child: Text(yesTxt),
+                child: Text(yesTxt,
+                style: TextStyle(
+                  color: contentTxtColor
+                ),
+                ),
               ),
             ],
           ),
