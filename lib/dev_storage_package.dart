@@ -13,6 +13,11 @@ class DevStorage {
     return;
   }
 
+   deleteStorage() async {
+    await box.erase();
+    return;
+  }
+
   dynamic getKeysValue(String key){
     dynamic value;
     try{
