@@ -37,18 +37,17 @@ int flag = 0;
          {
           case InternetConnectionStatus.connected : 
           {
-          try {
-          final result = await InternetAddress.lookup('example.com');
-          if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-
+     
+          // final result = await InternetAddress.lookup('example.com');
+          // if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
            changeConnectionStatus(true);
             update();
-          }
-        } on SocketException catch (_) {
-         changeConnectionStatus(false);
-           log('\x1B[32m Not Connected \x1B[0m');
-           disconnecetFunction();
-        }
+          
+        // } on SocketException catch (_) {
+        //  changeConnectionStatus(false);
+        //    log('\x1B[32m Not Connected \x1B[0m');
+        //    disconnecetFunction();
+        // }
 
         break;
           }
