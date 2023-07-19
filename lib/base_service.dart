@@ -10,7 +10,6 @@ import 'package:dio/dio.dart' as dio;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ApiClient extends GetxService {
-  
   //late String token;
   late dio.Dio dioD;
   String tokenKey;
@@ -19,10 +18,10 @@ class ApiClient extends GetxService {
   late Map<String, String> _mainHeaders;
   InternetConnectionCheckerDev connectivityController = Get.find();
 
-
-  ApiClient({required this.devStorage, required this.baseUrl, required this.tokenKey}) {
-    
-
+  ApiClient(
+      {required this.devStorage,
+      required this.baseUrl,
+      required this.tokenKey}) {
     //token = devStorage.getKeysValue(tokenKey) ??  "";
     /*_mainHeaders = {
       'Content-Type': 'application/json; charset=UTF-8',
@@ -30,13 +29,12 @@ class ApiClient extends GetxService {
     };*/
 
     var options = dio.BaseOptions(
-    baseUrl: baseUrl,
-    connectTimeout: 5000,
-    receiveTimeout: 5000,
+      baseUrl: baseUrl,
+      connectTimeout: Duration(milliseconds: 5000),
+      receiveTimeout: Duration(milliseconds: 5000),
     );
 
     dioD = dio.Dio(options);
-    
   }
 
   post(String uri, Map<String, dynamic>? query, datax) async {
@@ -51,7 +49,7 @@ class ApiClient extends GetxService {
     String? token = devStorage.getKeysValue(tokenKey);
     //bool? isLogged = devStorage.getIsLogged();
     Map<String, dynamic>? headersw = {};
- 
+
     if (token == null) {
       headersw = null;
     }
@@ -68,10 +66,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');
       return response;
     } catch (e) {
-       print('\x1B[31m Error on post: ${e.toString()}\x1B[0m');    
+      print('\x1B[31m Error on post: ${e.toString()}\x1B[0m');
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -81,7 +79,6 @@ class ApiClient extends GetxService {
   }
 
   get(String uri, Map<String, dynamic>? query) async {
-  
     if (!connectivityController.isConnected) {
       //getx.Get.snackbar("Internet Error", "You can not use this method offline", backgroundColor: UiConstants.orange);
       return dio.Response(
@@ -108,12 +105,12 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      //print('\x1B[31m${response.data.toString()}\x1B[0m');        
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');
       //print(response.data.toString());
       //print(response.statusCode);
       return response;
     } catch (e) {
-      print('\x1B[31mError on post: ${e.toString()}\x1B[0m');    
+      print('\x1B[31mError on post: ${e.toString()}\x1B[0m');
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -134,7 +131,7 @@ class ApiClient extends GetxService {
     String? token = devStorage.getKeysValue(tokenKey);
     //bool? isLogged = devStorage.getIsLogged();
     Map<String, dynamic>? headersw = {};
- 
+
     if (token == null) {
       headersw = null;
     }
@@ -151,10 +148,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');
       return response;
     } catch (e) {
-       print('\x1B[31m Error on put: ${e.toString()}\x1B[0m');    
+      print('\x1B[31m Error on put: ${e.toString()}\x1B[0m');
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -162,7 +159,6 @@ class ApiClient extends GetxService {
           statusCode: 1);
     }
   }
-
 
   delete(String uri, Map<String, dynamic>? query, datax) async {
     if (!connectivityController.isConnected) {
@@ -176,7 +172,7 @@ class ApiClient extends GetxService {
     String? token = devStorage.getKeysValue(tokenKey);
     //bool? isLogged = devStorage.getIsLogged();
     Map<String, dynamic>? headersw = {};
- 
+
     if (token == null) {
       headersw = null;
     }
@@ -193,10 +189,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');
       return response;
     } catch (e) {
-       print('\x1B[31m Error on delete: ${e.toString()}\x1B[0m');    
+      print('\x1B[31m Error on delete: ${e.toString()}\x1B[0m');
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -205,8 +201,8 @@ class ApiClient extends GetxService {
     }
   }
 
-
-  upload(String uri, Map<String, dynamic>? query, datax, File file, String? fileNameToApi) async {
+  upload(String uri, Map<String, dynamic>? query, datax, File file,
+      String? fileNameToApi) async {
     if (!connectivityController.isConnected) {
       return dio.Response(
           requestOptions: dio.RequestOptions(
@@ -217,14 +213,14 @@ class ApiClient extends GetxService {
 
     String fileName = file.path.split('/').last;
     dio.FormData formData = dio.FormData.fromMap({
-       fileNameToApi ?? "file":
-            await dio.MultipartFile.fromFile(file.path, filename:fileName),
+      fileNameToApi ?? "file":
+          await dio.MultipartFile.fromFile(file.path, filename: fileName),
     });
 
     String? token = devStorage.getKeysValue(tokenKey);
     //bool? isLogged = devStorage.getIsLogged();
     Map<String, dynamic>? headersw = {};
- 
+
     if (token == null) {
       headersw = null;
     }
@@ -241,10 +237,10 @@ class ApiClient extends GetxService {
             responseType: dio.ResponseType.json,
             headers: headersw,
           ));
-      //print('\x1B[31m${response.data.toString()}\x1B[0m');    
+      //print('\x1B[31m${response.data.toString()}\x1B[0m');
       return response;
     } catch (e) {
-       print('\x1B[31m Error on upload file: ${e.toString()} \x1B[0m');    
+      print('\x1B[31m Error on upload file: ${e.toString()} \x1B[0m');
       return dio.Response(
           requestOptions: dio.RequestOptions(
             path: uri,
@@ -252,13 +248,4 @@ class ApiClient extends GetxService {
           statusCode: 1);
     }
   }
-
-
-  
-  
-
-  
-
-  
-
 }
