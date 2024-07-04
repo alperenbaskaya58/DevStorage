@@ -2,7 +2,6 @@ library dev_storage_package;
 
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 

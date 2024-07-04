@@ -7,7 +7,6 @@ import 'package:dev_storage_package/internet_connection_checker.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:dio/dio.dart' as dio;
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ApiClient extends GetxService {
   //late String token;
