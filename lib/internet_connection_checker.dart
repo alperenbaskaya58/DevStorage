@@ -23,13 +23,29 @@ class InternetConnectionCheckerDev extends GetxController {
     // TODO: implement onInit
     super.onInit();
 
-    _connectivitySubscription = InternetConnectionChecker()
+    _connectivitySubscription = InternetConnectionChecker.createInstance()
         .onStatusChange
         .listen((InternetConnectionStatus result) async {
       log('\x1B[32m${result.toString()}\x1B[0m');
 
       switch (result) {
         case InternetConnectionStatus.connected:
+          {
+            // final result = await InternetAddress.lookup('example.com');
+            // if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+            changeConnectionStatus(true);
+            update();
+
+            // } on SocketException catch (_) {
+            //  changeConnectionStatus(false);
+            //    log('\x1B[32m Not Connected \x1B[0m');
+            //    disconnecetFunction();
+            // }
+
+            break;
+          }
+
+        case InternetConnectionStatus.slow:
           {
             // final result = await InternetAddress.lookup('example.com');
             // if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
