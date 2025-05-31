@@ -3,7 +3,7 @@ library dev_storage_package;
 import 'dart:async';
 import 'dart:developer';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class InternetConnectionCheckerDev extends GetxController {
   Function() disconnecetFunction;
@@ -12,7 +12,7 @@ class InternetConnectionCheckerDev extends GetxController {
   InternetConnectionCheckerDev(
       this.disconnecetFunction, this.connectedBackFunction);
 
-  late StreamSubscription<InternetConnectionStatus> _connectivitySubscription;
+  late StreamSubscription<InternetStatus> _connectivitySubscription;
 
   late bool isConnected;
 
@@ -23,13 +23,33 @@ class InternetConnectionCheckerDev extends GetxController {
     // TODO: implement onInit
     super.onInit();
 
-    _connectivitySubscription = InternetConnectionChecker.createInstance()
-        .onStatusChange
-        .listen((InternetConnectionStatus result) async {
+    _connectivitySubscription = InternetConnection.createInstance(
+      customCheckOptions: [
+        // Google DNS IP'si (ping testi için hızlı ve güvenilir)
+        InternetCheckOption(
+          uri: Uri.parse(
+            'https://8.8.8.8',
+          ), // Doğrudan IP, DNS çözümlemesi olmadan
+          timeout: const Duration(seconds: 3),
+        ),
+        // Cloudflare DNS IP'si
+        InternetCheckOption(
+          uri: Uri.parse('https://1.1.1.1'),
+          timeout: const Duration(seconds: 3),
+        ),
+        // Google'ın web sitesi (HTTP/HTTPS testi için)
+        InternetCheckOption(
+          uri: Uri.parse('https://www.google.com'),
+          timeout: const Duration(
+            seconds: 5,
+          ), // Web sitesi yanıtı biraz daha uzun sürebilir
+        ),
+      ],
+    ).onStatusChange.listen((InternetStatus result) async {
       log('\x1B[32m${result.toString()}\x1B[0m');
 
       switch (result) {
-        case InternetConnectionStatus.connected:
+        case InternetStatus.connected:
           {
             // final result = await InternetAddress.lookup('example.com');
             // if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -45,7 +65,7 @@ class InternetConnectionCheckerDev extends GetxController {
             break;
           }
 
-        case InternetConnectionStatus.slow:
+        case InternetStatus.disconnected:
           {
             // final result = await InternetAddress.lookup('example.com');
             // if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
@@ -61,16 +81,16 @@ class InternetConnectionCheckerDev extends GetxController {
             break;
           }
 
-        case InternetConnectionStatus.disconnected:
-          {
-            changeConnectionStatus(false);
-            log('\x1B[32m Not Connected \x1B[0m');
-            if (flag > 1) {
-              disconnecetFunction();
-            }
+        // case InternetStatus.:
+        //   {
+        //     changeConnectionStatus(false);
+        //     log('\x1B[32m Not Connected \x1B[0m');
+        //     if (flag > 1) {
+        //       disconnecetFunction();
+        //     }
 
-            break;
-          }
+        //     break;
+        //   }
       }
     });
   }
