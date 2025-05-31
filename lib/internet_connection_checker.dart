@@ -24,14 +24,44 @@ class InternetConnectionCheckerDev extends GetxController {
     super.onInit();
 
     _connectivitySubscription = InternetConnection.createInstance(
+      useDefaultOptions: false,
       customCheckOptions: [
         // Google DNS IP'si (ping testi için hızlı ve güvenilir)
+
         InternetCheckOption(
           uri: Uri.parse(
             'https://8.8.8.8',
           ), // Doğrudan IP, DNS çözümlemesi olmadan
           timeout: const Duration(seconds: 3),
         ),
+        InternetCheckOption(
+          uri: Uri.parse(
+            'https://connectivitycheck.gstatic.com/generate_204',
+          ), // Doğrudan IP, DNS çözümlemesi olmadan
+          timeout: const Duration(seconds: 2),
+        ),
+
+        InternetCheckOption(
+          uri: Uri.parse(
+            'https://www.apple.com/library/test/success.html',
+          ), // Doğrudan IP, DNS çözümlemesi olmadan
+          timeout: const Duration(seconds: 2),
+        ),
+
+        InternetCheckOption(
+          uri: Uri.parse(
+            "https://www.microsoft.com/robots.txt",
+          ), // Doğrudan IP, DNS çözümlemesi olmadan
+          timeout: const Duration(seconds: 2),
+        ),
+
+        InternetCheckOption(
+          uri: Uri.parse(
+            'https://dns.cloudflare.com/',
+          ), // Doğrudan IP, DNS çözümlemesi olmadan
+          timeout: const Duration(seconds: 2),
+        ),
+
         // Cloudflare DNS IP'si
         InternetCheckOption(
           uri: Uri.parse('https://1.1.1.1'),
